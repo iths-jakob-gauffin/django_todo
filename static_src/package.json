@@ -1,0 +1,17 @@
+{
+  "name": "static_src",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile:css": "node-sass -o ../static_compiled/css sass",
+    "compile:css:watch": "node-sass -o ../todo/static/todo sass --watch --output-style compressed",
+    "minify": "node-sass -w ../todo/static/todo/style.css --output-style compressed"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-sass": "^5.0.0"
+  }
+}

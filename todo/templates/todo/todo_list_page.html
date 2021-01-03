@@ -1,0 +1,15 @@
+{% extends "todo/base.html" %}
+{% block content %}
+    <h2>todo_list_page.html är detta</h2>
+    <ul>
+        {% if todo_list %}
+            {% for todo in todo_list %}
+            <li>
+                <a href="{% url 'todo:todo_detail' todo.id %}">{{todo.todo_title}}</a>
+            </li>
+            {% endfor %}
+        {% else %}
+            <h4>Listan är tom</h4>
+        {% endif %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "todo/base.html" %}
+{% block content %}
+    <h3>Todo detail page</h3>
+    <h1>{{todo.todo_title}}</h1>
+    {% if todo.todoposts_set.all %}
+        <ul>
+        {% for todo_post in todo.todoposts_set.all %}
+        
+            <li>
+                <p style="
+                {% if todo_post.complete %}
+                text-decoration: line-through;
+                {% else %}
+                color: black;
+                
+                {% endif %}
+                ">{{todo_post.todo_post}}</p>
+                <a href="{% url 'todo:complete_todo_post' todo_post.id %}">
+                {% if not todo_post.complete %}
+                    Klar
+                {% else %}
+                    Ångra
+                {% endif %}
+                </a>
+                <a href="{% url 'todo:edit_todo_post' todo_post.id %}">Redigera</a>
+                <a href="{% url 'todo:remove_todo_post' todo_post.id %}">Radera</a>
+            </li>
+        
+        {% endfor %}
+        </ul>
+    {% else %}
+        <h3>Listan är tom, skriv en todo!</h3>
+    {% endif %}
+    <form action="{% url 'todo:add_todo_post' todo.id %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Lägg till">
+    </form>
+
+{% endblock %}
