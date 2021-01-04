@@ -10,11 +10,17 @@
 <body>
     <h1>Base.html</h1>
     <header>
+        {{user.id}}
         <nav>
             <ul>
                 <li><a href="{% url 'todo:todo_list' %}">Lista</a></li>
                 <li><a href="{% url 'todo:new' %}">Ny</a></li>
-                <li><a href="{% url 'accounts:signup' %}">Ny</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'accounts:logout' %}">Logga ut</a></li>
+                {% else %}
+                    <li><a href="{% url 'accounts:login' %}">Logga in</a></li>
+                    <li><a href="{% url 'accounts:signup' %}">Registrera konto</a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>
