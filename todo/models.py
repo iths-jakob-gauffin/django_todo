@@ -3,11 +3,12 @@ from django.utils import timezone
 # Create your models here.
 from django.urls import reverse
 from django.conf import settings
-from django.contrib.auth.models import User
-# User = get_user_model()
+from django.contrib.auth import get_user_model
+# from django.contrib.auth.models import User
+User = get_user_model()
 
 class Todo(models.Model):
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     # user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
     # user = models.ForeignKey(User, related_name="todos", on_delete=models.CASCADE, blank=True, null=True)
     todo_title = models.CharField(max_length=50, blank=True)
